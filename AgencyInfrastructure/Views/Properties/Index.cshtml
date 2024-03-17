@@ -1,0 +1,78 @@
+﻿@model IEnumerable<AgencyDomain.Model.Property>
+
+@{
+    ViewData["Title"] = "Власності за категорією";
+}
+
+<h1>Власності за категорією @ViewBag.PropertyTypeName</h1>
+
+<p>
+    @Html.ActionLink("Додати нову власність", "Create", new {propertyTypeId = ViewBag.PropertyTypeId})
+    @* <a asp-action="Create" asp-route-id="@ViewBag.PropertyTypeId">Додати нову власність</a> *@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bedrooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bathrooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bedrooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bathrooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyType.TypeName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
